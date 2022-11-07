@@ -100,6 +100,32 @@ public class Magpie4
 			response = transformIWantToStatement(statement);
 		}
 
+		//facts 
+		        else if (findKeyword(statement, "hurricane") >= 0){
+            response = "Hmmm. That's interesting! Did you know two hurricanes can merge together and become one!?";
+        }
+        else if (findKeyword(statement, "rain") >= 0){
+            response = "Rain is one of my favorites! Something I think is cool is that raindrops are shaped more like hamburger buns. As a rain drop falls, it becomes less spherical in shape and becomes more flattened on the bottom like a hamburger bun.";
+        }
+        else if (findKeyword(statement, "sun") >= 0){
+            response = "Woah! That's fascinating! By the way, did you know it would take 1.3 million earths to fill up the sun!? ";
+        }
+        else if (findKeyword(statement, "warm") >= 0){
+            response = "Woah! That's fascinating! By the way, did you know it would take 1.3 million earths to fill up the sun!? ";
+        }
+        else if (findKeyword(statement, "hot") >= 0){
+            response = "Woah! That's fascinating! By the way, did you know it would take 1.3 million earths to fill up the sun!? ";
+        }
+        else if (findKeyword(statement, "snow") >= 0){
+            response = "The cold? Interesting! Something I think that's interesing is it takes about an hour for snowflakes to fall to the ground!";
+        }
+        else if (findKeyword(statement, "cold") >= 0){
+            response = "The cold? Interesting! Something I think that's interesing is it takes about an hour for snowflakes to fall to the ground!";
+        }
+        else if (findKeyword(statement, "tornado") >= 0){
+            response = "Ooo tornadoes? That's very cool! In the whole world, the US gets the most tornadoes but what I find is interesting is that England is number three on that list!";
+        }
+
 		else
 		{
 			// Look for a two word (you <something> me)
