@@ -10,6 +10,8 @@
  * @version April 2012
  *
  */
+import java.util.Scanner;
+
 public class Magpie4
 {
 	/**
@@ -18,7 +20,7 @@ public class Magpie4
 	 */	
 	public String getGreeting()
 	{
-		return "Hello, let's talk.";
+		return "Hello, how are you?";
 	}
 	
 	/**
@@ -31,6 +33,9 @@ public class Magpie4
 	public String getResponse(String statement)
 	{
 		String response = "";
+		String lastChar = statement.substring(statement.length() - 1);
+		//char lastChar = statement.charAt(statement.length() - 1);
+		//char questionMark = '?';
 		if (statement.length() == 0)
 		{
 			response = "Say something, please.";
@@ -40,6 +45,47 @@ public class Magpie4
 		{
 			response = "Why so negative?";
 		}
+
+		// topic specific dialogue 
+		else if (findKeyword(statement, "I'm") >= 0)
+		{
+			response = "That's good! How was the weather today?";
+		}
+		else if (findKeyword(statement, "weather was") >= 0)
+		{
+			response = "Nice! The weather the week of halloween was really cold; do you prefer hot or cold weather?";
+		}
+
+		// choice
+		else if (findKeyword(statement, "cold weather") >= 0)
+		{
+			response = "Really? Me too! I'm glad it's finally winter. Why?";
+		}
+		else if (findKeyword(statement, "hot weather") >= 0)
+		{
+			response = "Really? I prefer the cold! Why do you like hot weather?";
+		}
+
+		else if (findKeyword(statement, "rhyme") >= 0)
+		{
+			response = "Weather rhyme time! When it's cloudy I get pouty!";
+		}
+
+		else if (findKeyword(statement, "rain") >= 0)
+		{
+			response = "A lot of people have different thoughts about the rain! Some think it's refreshing while others think it's sad.";
+		}
+
+		else if (lastChar.equals("?"))
+		{
+			response = getClarification();
+		}
+
+		else if (findKeyword(statement, "your") >= 0)
+		{
+			response = "I would rather learn about you than talk about me!";
+		}
+
 		else if (findKeyword(statement, "mother") >= 0
 				|| findKeyword(statement, "father") >= 0
 				|| findKeyword(statement, "sister") >= 0
@@ -67,9 +113,10 @@ public class Magpie4
 			}
 			else
 			{
-				response = getRandomResponse();
+				response = getRandomQuestion();
 			}
 		}
+
 		return response;
 	}
 	
@@ -191,7 +238,7 @@ public class Magpie4
 	 */
 	private String getRandomResponse()
 	{
-		final int NUMBER_OF_RESPONSES = 4;
+		final int NUMBER_OF_RESPONSES = 6;
 		double r = Math.random();
 		int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
 		String response = "";
@@ -212,8 +259,57 @@ public class Magpie4
 		{
 			response = "You don't say.";
 		}
+		else if (whichResponse == 4)
+		{
+			response = "No way!";
+		}
+		else if (whichResponse == 5)
+		{
+			response = "Wow! How was the weather today?";
+		}
 
 		return response;
 	}
+
+private String getClarification()
+{
+	String response = "I'm sorry, could you repeat that?";
+	return response;
+}
+
+private String getRandomQuestion()
+{
+	final int NUMBER_OF_RESPONSES = 6;
+	double r = Math.random();
+	int question = (int)(r * NUMBER_OF_RESPONSES);
+	String response = "";
+	
+	if (question == 0)
+	{
+		response = "How is the weather looking next week?";
+	}
+	else if (question == 1)
+	{
+		response = "Tell me a weather rhyme! My friend told me that in the sun we have fun, and in the rain we feel pain LOL";
+	}
+	else if (question == 2)
+	{
+		response = "What is your favorite or least favorite season?";
+	}
+	else if (question == 3)
+	{
+		response = "Do you like the rain?";
+	}
+	else if (question == 4)
+	{
+		response = "What is the best food to eat during winter?";
+	}
+	else if (question == 5)
+	{
+		response = "What do you eat to cool down in the summer?";
+	}
+
+	return response;
+}
 
 }
