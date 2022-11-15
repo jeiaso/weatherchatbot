@@ -13,7 +13,7 @@ public class MagpieRunner4
 	 */
 	public static void main(String[] args)
 	{
-		Magpie4 maggie = new Magpie4();
+		Magpie4Refactored maggie = new Magpie4Refactored();
 		
 		System.out.println (maggie.getGreeting());
 		Scanner in = new Scanner (System.in);
@@ -21,7 +21,7 @@ public class MagpieRunner4
 		
 		while (!statement.equals("Bye"))
 		{
-			System.out.println (maggie.getResponse(statement));
+			System.out.println (maggie.parseInput(statement));
 			statement = in.nextLine();
 		}
 	}
